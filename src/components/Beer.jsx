@@ -14,7 +14,7 @@ class Beer extends Component {
         }
     }
     componentDidMount() {
-        fetch("/beers/?key=659d5c6b8f3d2447f090119e48202fdb")
+        fetch(`/beers/${this.props.match.params.id}/?key=659d5c6b8f3d2447f090119e48202fdb`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -41,9 +41,7 @@ class Beer extends Component {
         } else {
             return (
                 <Container>
-                        {items.map((item,index) => (
-                            <BeerDetails key={index} name={item.name}/>
-                        ))}
+                      <BeerDetails name={items.name}/>
                 </Container>
             );
         }

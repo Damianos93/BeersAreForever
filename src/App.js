@@ -7,7 +7,7 @@ import NavBar from "./components/Nav";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
-  return (
+  return ( 
     <div className="App">
         <NavBar />
         <Switch>
