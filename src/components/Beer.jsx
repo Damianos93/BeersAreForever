@@ -14,7 +14,7 @@ class Beer extends Component {
         }
     }
     componentDidMount() {
-        fetch(`/beers/${this.props.match.params.id}/?key=659d5c6b8f3d2447f090119e48202fdb`)
+        fetch(`/beer/${this.props.match.params.id}?key=659d5c6b8f3d2447f090119e48202fdb`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
