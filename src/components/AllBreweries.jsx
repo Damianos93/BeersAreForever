@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ShowMoreText from 'react-show-more-text';
 
 class AllBreweries extends Component {
     constructor(props) {
