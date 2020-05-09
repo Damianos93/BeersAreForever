@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Nav} from 'react-bootstrap';
 import "./Nav.scss"
+
 class NavBar extends Component {
     constructor(props) {
         super(props)
@@ -21,10 +22,12 @@ class NavBar extends Component {
                         <Nav.Link href="/allBeers" >AllBeers</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2">Breweries</Nav.Link>
+                        <Nav.Link href="/allBreweries">Breweries</Nav.Link>
                     </Nav.Item>
                 </Nav>
+                
             </div>
+            
         )
     }
 }

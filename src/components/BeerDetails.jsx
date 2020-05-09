@@ -12,15 +12,16 @@ class BeerDetails extends Component {
     }
 
     render() {
+        
         return (
             <div>
-               <h1>{this.props.name}</h1>
-               <h1>{this.props.abv}</h1>
-               <h1>{this.props.image}</h1>
-               <h1>{this.props.kind}</h1>
-               <h1>{this.props.genre}</h1>
-               <h1>{this.props.desc}</h1>
-            </div>
+               <h1>{this.props.name}</h1>   
+               <img src={this.props.image} alt={this.props.name}  />
+               <h2>Country : {this.props.location}</h2>
+               <h4>Kind of Beer : {this.props.kind}</h4>
+               <h3>Abv : {this.props.abv}</h3>
+               <p> <h3>Description :</h3> {this.props.desc}</p>
+               </div>
         )
     }
 }

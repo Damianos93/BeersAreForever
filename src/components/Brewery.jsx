@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link,  } from "react-router-dom"
 import { Container, Spinner } from 'react-bootstrap';
-import "./AllBeers.scss"
 class AllBeers extends Component {
     constructor(props) {
         super(props)
@@ -14,14 +13,14 @@ class AllBeers extends Component {
         }
     }
     componentDidMount() {
-        fetch(`/beers?key=659d5c6b8f3d2447f090119e48202fdb`)
+        fetch(`/breweries/?key=659d5c6b8f3d2447f090119e48202fdb`)
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
                         items: result.data,
-                        filteredBeers:result.data
+                        filteredBreweries:result.data
                     });
                 },
 
@@ -33,13 +32,13 @@ class AllBeers extends Component {
                 }
             )
     }
-    filterBeers = e => {
-        let filterTheBeers = this.state.items.filter((beer)=>{
+    filterBreweries = e => {
+        let filterTheBreweries = this.state.items.filter((brewery)=>{
             return(
-                beer.name.toLowerCase().includes(e.target.value.toLowerCase())
+                brewery.name.toLowerCase().includes(e.target.value.toLowerCase())
             )
         })
-        this.setState({filteredBeers:filterTheBeers})
+        this.setState({filteredBreweries:filterTheBreweries})
     }
     render() {
         const { error, isLoaded } = this.state;
@@ -53,12 +52,12 @@ class AllBeers extends Component {
         } else {
             return (
                 <Container>
-                    <h1>Search For Specific Beer</h1>
-                    <input className="w-40" type="text" onChange= {this.filterBeers}/>
+                    <h1>Search For Specific Brewery</h1>
+                    <input className="w-40" type="text" onChange= {this.filterBreweries}/>
                     <ul>
-                        {this.state.filteredBeers.map(item => (
+                        {this.state.filteredBreweries.map(item => (
                             <li key={item.name} >
-                                <Link to={`/beer-details/${item.id}`} >{item.name}</Link>
+                                <Link to={`/brewery-details/${item.id}`} >{item.name}</Link>
                             </li>
                         ))}
                         </ul>

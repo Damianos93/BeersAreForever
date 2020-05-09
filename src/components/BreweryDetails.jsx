@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Spinner } from 'react-bootstrap';
-import BeerDetails from "./BeerDetails"
+import AllBreweries from './AllBreweries';
 
 class Beer extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Beer extends Component {
         }
     }
     componentDidMount() {
-        fetch(`/beer/${this.props.match.params.id}?key=659d5c6b8f3d2447f090119e48202fdb&withBreweries=Y`)
+        fetch(`/brewery/${this.props.match.params.id}?key=659d5c6b8f3d2447f090119e48202fdb&withLocations=Y&withSocialAccounts=Y`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -40,13 +40,17 @@ class Beer extends Component {
         } else {
             return (
                 <Container>
-                      <BeerDetails 
+                      <AllBreweries 
                       name={items.name} 
-                      location={items.breweries[0].locations[0].country.name}
-                      image={items.labels.medium}
-                      abv={items.abv} 
-                      desc={items.style.description}
-                      kind={items.style.category.name} />
+                      country={items.locations[0].country.name}
+                      location={items.locations[0].streetAddress}
+                      city={items.locations[0].locality}
+                      state={items.locations[0].region}
+                      image={items.images.medium} 
+                      website={items.website} 
+                      desc={items.description}
+                      est={items.established} 
+                    />
                 </Container>
             );
         }
