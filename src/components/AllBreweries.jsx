@@ -23,7 +23,6 @@ class AllBreweries extends Component {
                 <h5>City : {this.props.city}</h5>
                 <h5>Address : {this.props.location}</h5>
                 <h5>State : {this.props.state}</h5>
-                ]
             </div>
         )
     }

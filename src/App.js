@@ -3,10 +3,12 @@ import AllBeers from "./components/AllBeers";
 import Beer from "./components/Beer";
 import Home from "./components/Home";
 import Brewery from "./components/Brewery";
+import SearchByCountry from "./components/SearchByCountry";
 import BreweryDetails from "./components/BreweryDetails";
 import "./App.scss";
 import NavBar from "./components/Nav";
 import { Switch, Route } from "react-router-dom";
+import BeerCountry from "./components/BeerCountry";
 
 function App() {
   return ( 
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/brewery-details/:id" component={BreweryDetails} />
         <Route exact path="/allBeers" component={AllBeers} />
         <Route exact path="/allBreweries" component={Brewery} />
+        <Route exact path="/searchByCountry" component={SearchByCountry} />
+        <Route exact path="/beer-search/:id" component={BeerCountry} />
       </Switch>
     </div>
   );

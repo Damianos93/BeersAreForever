@@ -24,6 +24,9 @@ class NavBar extends Component {
                     <Nav.Item>
                         <Nav.Link href="/allBreweries">Breweries</Nav.Link>
                     </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link href="/searchByCountry">Search By Country</Nav.Link>
+                    </Nav.Item>
                 </Nav>
                 
             </div>

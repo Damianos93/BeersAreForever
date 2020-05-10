@@ -17,26 +17,30 @@ class AllBeers extends Component {
         this.IncrNum = this.IncrNum.bind(this)
         this.DecrNum = this.DecrNum.bind(this)
     }
-    componentDidMount() {
-        fetch(`/beers?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.num}`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.data,
-                        filteredBeers: result.data
-                    });
-                },
+   
+        fetchData(){
+            fetch(`/beers?key=659d5c6b8f3d2447f090119e48202fdb&p=${this.state.num}`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    items: result.data,
+                    filteredBeers: result.data
+                });
+            },
 
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-    }
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        )
+}
+        componentDidMount() {
+            this.fetchData()
+        }
     filterBeers = e => {
         let filterTheBeers = this.state.items.filter((beer) => {
             return (
@@ -49,11 +53,13 @@ class AllBeers extends Component {
         this.setState({
             num: this.state.num + 1
         })
+        this.fetchData();
     }
     DecrNum() {
         this.setState({
             num: this.state.num - 1
         })
+        this.fetchData();
 
     }
     render() {
@@ -77,8 +83,8 @@ class AllBeers extends Component {
                         ))}
                     </ul>
                     <ToggleButtonGroup type="checkbox" defaultValue={[1, 2]} className="mb-2">
-                        <ToggleButton value={1} onClick={this.DecrNum}>Previous Page</ToggleButton>
-                        <ToggleButton value={2} onClick={this.IncrNum}>Next Page</ToggleButton>
+                        <ToggleButton value={1} onClick={()=>this.DecrNum()}>Previous Page</ToggleButton>
+                        <ToggleButton value={2} onClick={()=>this.IncrNum()}>Next Page</ToggleButton>
                     </ToggleButtonGroup>
                 </Container>
             );

@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import { Container, Spinner } from 'react-bootstrap';
-import BeerDetails from "./BeerDetails"
 
-class Beer extends Component {
+class BeerCountry extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             error: null,
             isLoaded: false,
-            items: [] ,
-            
+            items: []  
         }
     }
     componentDidMount() {
-        fetch(`/beer/${this.props.match.params.id}?key=659d5c6b8f3d2447f090119e48202fdb&withBreweries=Y`)
+        fetch(`/beers/?key=659d5c6b8f3d2447f090119e48202fdb&withBreweries=Y`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -31,7 +29,7 @@ class Beer extends Component {
             )
     }
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -41,18 +39,16 @@ class Beer extends Component {
         } else {
             return (
                 <Container>
-                      <BeerDetails 
-                      name={items.name} 
-                      location={items.breweries[0].locations[0].country.name}
-                      image={items.labels?items.labels.medium:null}
-                      abv={items.abv} 
-                      desc={items.style.description}
-                      kind={items.style.category.name} />
+                      {this.state.items.map((item,key) => (
+                           <div>
+                             {item.breweries[0].locations[0].country.isoCode === this.props.match.params.id?item.name:null}
+                            </div>
+                        ))}
                 </Container>
-                
             );
+            
         }
     }
 }
 
-export default Beer
+export default BeerCountry
