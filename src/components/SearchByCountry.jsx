@@ -70,7 +70,7 @@ class searchByCountry extends Component {
             <div className="same-side">
                     <h1 className="text-light">Search by Iso code</h1>
                     <input  type="text" onChange={this.filterCountries} />
-                    <ul>
+                    <ul className="style text-light">
                     
                     {this.state.filteredCountries.map(item => (
                             <li key={item.id}>
