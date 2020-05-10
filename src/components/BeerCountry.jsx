@@ -1,7 +1,99 @@
+// import React, { Component } from 'react'
+// import { Container, Spinner, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+// import {Link} from "react-router-dom"
+// import "./BeerCountry.scss"
+
+// class BeerCountry extends Component {
+//     constructor(props) {
+//         super(props)
+
+//         this.state = {
+//             error: null,
+//             isLoaded: false,
+//             items: [],
+//             filteredCountries: [],
+//             num: 1
+//         }
+//         this.IncrNum = this.IncrNum.bind(this)
+//         this.DecrNum = this.DecrNum.bind(this)
+//     }
+//     fetchData = () => {
+//         fetch(`/beers/?key=4feaae179035e0e40542edf1b44b7ff8&withBreweries=Y&p=${this.state.num}`)
+//             .then(res => res.json())
+//             .then((result) => {
+//                 this.setState({
+//                     isLoaded: true,
+//                     items: result.data || [],
+//                     filteredBeers: result.data
+
+//                 });
+//             },
+//                 (error) => {
+//                     this.setState({
+//                         isLoaded: true,
+//                         error
+//                     });
+//                 }
+//             )
+//     }
+//     componentDidMount() {
+//         this.fetchData()
+//     }
+//     filterBeers = e => {
+//         let filterTheBeers = this.state.items.filter((beer) => {
+//             return (
+//                 beer.name.toLowerCase().includes(e.target.value.toLowerCase())
+//             )
+//         })
+//         this.setState({ filteredBeers: filterTheBeers })
+//     }
+//     IncrNum() {
+//         this.setState({
+//             num: this.state.num + 1
+//         })
+//         this.fetchData();
+//     }
+//     DecrNum() {
+//         this.setState({
+//             num: this.state.num - 1
+//         })
+//         this.fetchData();
+//     }
+//     render() {
+//         const { error, isLoaded } = this.state;
+//         if (error) {
+//             return <div>Error: {error.message}</div>;
+//         } else if (!isLoaded) {
+//             return <Spinner animation="border" role="status">
+//                 <span className="sr-only">Loading...</span>
+//             </Spinner>
+//         } else {
+//             return (
+//                 <div className="beer-background">
+//                     <h1 className="text-light rafaBig same-side">Search For Specific Beer</h1>
+//                     <input type="text" className="same-side" onChange={this.filterBeers} />
+//                     <ul className="style same-side">
+//                         {this.state.filteredBeers.map((item, key) => (
+//                                <li key={item.name}>
+//                                 <Link className="text-light" to={`/beer-details/${item.id}`} >{item.name}</Link>
+//                                 </li>
+//                         ))}
+//                         </ul>
+//                         <ToggleButtonGroup type="checkbox" defaultValue={[1, 2]} className="mb-2">
+//                          <ToggleButton className="text-light bg-warning" value={1} onClick={()=>this.DecrNum()}>Previous Page</ToggleButton>
+//                          <ToggleButton className="text-light bg-warning" value={2} onClick={()=>this.IncrNum()}>Next Page</ToggleButton>
+//                      </ToggleButtonGroup>
+//                 </div>
+//             );
+
+//         }
+//     }
+// }
+
+// export default BeerCountry
+
 import React, { Component } from 'react'
-import { Container, Spinner, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import {Link} from "react-router-dom"
-import "./BeerCountry.scss"
+import { Container, Spinner } from 'react-bootstrap';
 
 class BeerCountry extends Component {
     constructor(props) {
@@ -10,24 +102,18 @@ class BeerCountry extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: [],
-            filteredCountries: [],
-            num: 1
+            items: []  
         }
-        this.IncrNum = this.IncrNum.bind(this)
-        this.DecrNum = this.DecrNum.bind(this)
     }
-    fetchData = () => {
-        fetch(`/beers/?key=4feaae179035e0e40542edf1b44b7ff8&withBreweries=Y&p=${this.state.num}`)
+    componentDidMount() {
+        fetch(`/beers/?key=b4511df48ed054fa8d0c793195b6fae6&withBreweries=Y`)
             .then(res => res.json())
             .then((result) => {
-                this.setState({
-                    isLoaded: true,
-                    items: result.data || [],
-                    filteredBeers: result.data
-
-                });
-            },
+                    this.setState({
+                        isLoaded: true,
+                        items: result.data || []
+                    });
+                },
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -36,31 +122,8 @@ class BeerCountry extends Component {
                 }
             )
     }
-    componentDidMount() {
-        this.fetchData()
-    }
-    filterBeers = e => {
-        let filterTheBeers = this.state.items.filter((beer) => {
-            return (
-                beer.name.toLowerCase().includes(e.target.value.toLowerCase())
-            )
-        })
-        this.setState({ filteredBeers: filterTheBeers })
-    }
-    IncrNum() {
-        this.setState({
-            num: this.state.num + 1
-        })
-        this.fetchData();
-    }
-    DecrNum() {
-        this.setState({
-            num: this.state.num - 1
-        })
-        this.fetchData();
-    }
     render() {
-        const { error, isLoaded } = this.state;
+        const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -69,23 +132,15 @@ class BeerCountry extends Component {
             </Spinner>
         } else {
             return (
-                <div className="beer-background">
-                    <h1 className="text-light rafaBig same-side">Search For Specific Beer</h1>
-                    <input type="text" className="same-side" onChange={this.filterBeers} />
-                    <ul className="style same-side">
-                        {this.state.filteredBeers.map((item, key) => (
-                               <li key={item.name}>
-                                <Link className="text-light" to={`/beer-details/${item.id}`} >{item.name}</Link>
-                                </li>
+                <Container>
+                      {this.state.items.map(item => (
+                           <div>
+                                {item.breweries[0].locations[0].country.isoCode==this.props.match.params.id?item.name:null}
+                            </div>
                         ))}
-                        </ul>
-                        <ToggleButtonGroup type="checkbox" defaultValue={[1, 2]} className="same-side">
-                         <ToggleButton className="text-light bg-warning" value={1} onClick={()=>this.DecrNum()}>Previous Page</ToggleButton>
-                         <ToggleButton className="text-light bg-warning" value={2} onClick={()=>this.IncrNum()}>Next Page</ToggleButton>
-                     </ToggleButtonGroup>
-                </div>
+                </Container>
             );
-
+            
         }
     }
 }
