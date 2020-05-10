@@ -4,6 +4,7 @@ import Beer from "./components/Beer";
 import Home from "./components/Home";
 import Brewery from "./components/Brewery";
 import SearchByCountry from "./components/SearchByCountry";
+import SearchByType from "./components/SearchByType";
 import BreweryDetails from "./components/BreweryDetails";
 import "./App.scss";
 import NavBar from "./components/Nav";
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/allBeers" component={AllBeers} />
         <Route exact path="/allBreweries" component={Brewery} />
         <Route exact path="/searchByCountry" component={SearchByCountry} />
+        <Route exact path="/searchByType" component={SearchByType} />
         <Route exact path="/beer-search/:id" component={BeerCountry} />
       </Switch>
     </div>
