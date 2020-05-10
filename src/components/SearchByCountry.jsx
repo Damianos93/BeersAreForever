@@ -155,20 +155,20 @@ class searchByCountry extends Component {
             </Spinner>
         } else {
         return (
-            <Container>
-
-                    <h1>Search by Iso code</h1>
-                    <input className="w-40" type="text" onChange={this.filterCountries} />
-                    <ul>
-                    
-                    {this.state.filteredCountries.map(item => (
-                            <li key={item.id}>
-                               <Link to={`/beer-search/${item}`} >{item}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                   
-                </Container>
+            <div className="backgrounds">
+            //             <div className="same-side">
+            //                     <h1 className="text-light">Search by Iso code</h1>
+            //                     <input className="w-40" type="text" onChange={this.filterCountries} />
+            //                     <ul className="style">
+            //                     {this.state.filteredCountries.map((item,index) => (
+                                        <li key={index}>
+                                           <Link className="text-light" to={`/beer-search/${item}`}>{item}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                               
+                            </div>
+                            </div>
         )}
     }
 }
