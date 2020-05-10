@@ -16,16 +16,16 @@ class NavBar extends Component {
             <div>
                 <Nav className="beer-image">
                     <Nav.Item>
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link className="text-light" href="/">Home</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/allBeers" >AllBeers</Nav.Link>
+                        <Nav.Link className="text-light" href="/allBeers" >AllBeers</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/allBreweries">Breweries</Nav.Link>
+                        <Nav.Link className="text-light" href="/allBreweries">Breweries</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/searchByCountry">Search By Country</Nav.Link>
+                        <Nav.Link className="text-light" href="/searchByCountry">Search By Country</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 

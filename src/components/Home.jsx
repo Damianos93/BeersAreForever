@@ -12,7 +12,7 @@ class Home extends Component {
     render() {
         return (
             <div className="background">
-                Welcome to paradi...eeh i mean...The Home Of The Beers
+               <h1 className="brown ml-5">Welcome to the Touch Of Beer</h1> 
             </div>
         )
     }

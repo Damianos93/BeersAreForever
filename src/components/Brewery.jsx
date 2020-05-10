@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link,  } from "react-router-dom"
 import { Container, Spinner } from 'react-bootstrap';
+import "./Brewery.scss"
 class AllBeers extends Component {
     constructor(props) {
         super(props)
@@ -51,18 +52,23 @@ class AllBeers extends Component {
             //   <div>Loading...</div>;
         } else {
             return (
-                <Container>
-                    <h1>Search For Specific Brewery</h1>
+               
+                    <div className="rafaBeau">
+                         <Container>
+                    <h1 className="text-light">Search For Specific Brewery</h1>
                     <input className="w-40" type="text" onChange= {this.filterBreweries}/>
-                    <ul>
+                    <ul className="style">
                         {this.state.filteredBreweries.map(item => (
                             <li key={item.name} >
-                                <Link to={`/brewery-details/${item.id}`} >{item.name}</Link>
+                                <Link className="text-light" to={`/brewery-details/${item.id}`} >{item.name}</Link>
                             </li>
                         ))}
                         </ul>
+                        </Container>
+                    </div>
+                    
                         
-                </Container>
+               
             );
         }
     }

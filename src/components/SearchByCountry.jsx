@@ -65,20 +65,21 @@ class searchByCountry extends Component {
             </Spinner>
         } else {
         return (
+            <div className="backgrounds">
             <Container>
-
-                    <h1>Search by Iso code</h1>
+                    <h1 className="text-light">Search by Iso code</h1>
                     <input className="w-40" type="text" onChange={this.filterCountries} />
-                    <ul>
+                    <ul className="style">
                     
                     {this.state.filteredCountries.map((item,index) => (
                             <li key={index}>
-                               <Link to={`/beer-search/${item}`} >{item}</Link>
+                               <Link className="text-light" to={`/beer-search/${item}`} >{item}</Link>
                             </li>
                         ))}
                     </ul>
                    
                 </Container>
+                </div>
         )}
     }
 }

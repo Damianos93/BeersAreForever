@@ -26,7 +26,7 @@ class AllBeers extends Component {
                 this.setState({
                     isLoaded: true,
                     items: result.data,
-                    filteredBeers: result.data
+                    filteredBeers: result.data.slice(0,20)
                 });
             },
 
@@ -60,7 +60,6 @@ class AllBeers extends Component {
             num: this.state.num - 1
         })
         this.fetchData();
-
     }
     render() {
         const { error, isLoaded } = this.state;
@@ -72,21 +71,28 @@ class AllBeers extends Component {
             </Spinner>
         } else {
             return (
-                <Container>
-                    <h1>Search For Specific Beer</h1>
-                    <input className="w-40" type="text" onChange={this.filterBeers} />
-                    <ul>
+                <div className="back">
+                  
+                        <div>
+                        <h1 className="text-light rafaBig">Search For Specific Beer</h1>
+                    <input type="text" onChange={this.filterBeers} />
+                    <ul className="style">
                         {this.state.filteredBeers.map(item => (
                             <li key={item.name}>
-                                <Link to={`/beer-details/${item.id}`} >{item.name}</Link>
+                                <Link className="text-light" to={`/beer-details/${item.id}`} >{item.name}</Link>
                             </li>
                         ))}
                     </ul>
+                    </div>
                     <ToggleButtonGroup type="checkbox" defaultValue={[1, 2]} className="mb-2">
-                        <ToggleButton value={1} onClick={()=>this.DecrNum()}>Previous Page</ToggleButton>
-                        <ToggleButton value={2} onClick={()=>this.IncrNum()}>Next Page</ToggleButton>
+                        <ToggleButton className="text-light bg-warning" value={1} onClick={()=>this.DecrNum()}>Previous Page</ToggleButton>
+                        <ToggleButton className="text-light bg-warning" value={2} onClick={()=>this.IncrNum()}>Next Page</ToggleButton>
                     </ToggleButtonGroup>
-                </Container>
+                       
+                    
+                   
+                    
+                </div>
             );
         }
     }
