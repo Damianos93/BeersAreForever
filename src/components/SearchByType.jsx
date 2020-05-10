@@ -10,7 +10,7 @@
 //         this.state = {
 //             error: null,
 //             isLoaded: false,
-//             items: [],
+//             countries: [],
 //             filteredCountries: [],
 //             num: 1
 //         }
@@ -18,13 +18,13 @@
      
 //     fetchData(){
         
-//         fetch(`/locations/?key=b4511df48ed054fa8d0c793195b6fae6&p=1`)
+//         fetch(`/beers/?key=b4511df48ed054fa8d0c793195b6fae6&`)
 //             .then(res => res.json())
 //             .then(
 //                 (result) => {
 //                     this.setState({
 //                         isLoaded: true,
-//                         countitemsries: result.data,
+//                         countries: result.data,
 //                         filteredCountries:[]
 //                     });
 //                 },
@@ -45,11 +45,11 @@
 //         let filterTheCountries = this.state.countries.filter((country) => {
            
 //             return (
-//                 country.countryIsoCode.toLowerCase().includes(e.target.value.toLowerCase())
+//                 country.style.category.name.toLowerCase().includes(e.target.value.toLowerCase())
 //             )
 //         })
         
-//         const countries = filterTheCountries.map(q => q.countryIsoCode); 
+//         const countries = filterTheCountries.map(q => q.style.category.name); 
 //         const countriesFinal = countries.filter((q, idx) => 
 //         countries.indexOf(q) === idx)
 //         this.setState({ filteredCountries:countries.filter((q, idx) => 
