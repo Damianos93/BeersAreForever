@@ -13,7 +13,7 @@ class Beer extends Component {
         }
     }
     componentDidMount() {
-        fetch(`/brewery/${this.props.match.params.id}?key=659d5c6b8f3d2447f090119e48202fdb&withLocations=Y&withSocialAccounts=Y`)
+        fetch(`/brewery/${this.props.match.params.id}?key=4feaae179035e0e40542edf1b44b7ff8&withLocations=Y&withSocialAccounts=Y`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
@@ -39,7 +39,7 @@ class Beer extends Component {
             </Spinner>
         } else {
             return (
-                <Container>
+                     <div className="same-side">
                       <AllBreweries 
                       name={items.name} 
                       country={items.locations[0].country.name}
@@ -51,7 +51,8 @@ class Beer extends Component {
                       desc={items.description}
                       est={items.established} 
                     />
-                </Container>
+                    </div>
+            
             );
         }
     }

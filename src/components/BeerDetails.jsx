@@ -15,7 +15,7 @@ class BeerDetails extends Component {
         return (
             <div>
                <h1>{this.props.name}</h1>   
-               <img src={this.props.image} alt={this.props.name}/>z
+               <img src={this.props.image} alt={this.props.name}/>
                <h2>Country : {this.props.location}</h2>
                <h4>Kind of Beer : {this.props.kind}</h4>
                <h3>Abv : {this.props.abv}</h3>

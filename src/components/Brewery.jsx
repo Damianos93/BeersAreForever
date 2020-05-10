@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link,  } from "react-router-dom"
+import { Link, } from "react-router-dom"
 import { Container, Spinner } from 'react-bootstrap';
 import "./Brewery.scss"
 class AllBeers extends Component {
@@ -10,18 +10,18 @@ class AllBeers extends Component {
             error: null,
             isLoaded: false,
             items: [],
-            filteredBeers:[]
+            filteredBeers: []
         }
     }
     componentDidMount() {
-        fetch(`/breweries/?key=659d5c6b8f3d2447f090119e48202fdb`)
+        fetch(`/breweries/?key=4feaae179035e0e40542edf1b44b7ff8`)
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
                         items: result.data,
-                        filteredBreweries:result.data
+                        filteredBreweries: result.data
                     });
                 },
 
@@ -34,12 +34,12 @@ class AllBeers extends Component {
             )
     }
     filterBreweries = e => {
-        let filterTheBreweries = this.state.items.filter((brewery)=>{
-            return(
+        let filterTheBreweries = this.state.items.filter((brewery) => {
+            return (
                 brewery.name.toLowerCase().includes(e.target.value.toLowerCase())
             )
         })
-        this.setState({filteredBreweries:filterTheBreweries})
+        this.setState({ filteredBreweries: filterTheBreweries })
     }
     render() {
         const { error, isLoaded } = this.state;
@@ -49,30 +49,26 @@ class AllBeers extends Component {
             return <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>
             </Spinner>
-            //   <div>Loading...</div>;
         } else {
             return (
-               
-                    <div className="rafaBeau">
-                         <Container>
-                    <h1 className="text-light">Search For Specific Brewery</h1>
-                    <input className="w-40" type="text" onChange= {this.filterBreweries}/>
-                    <ul className="style">
-                        {this.state.filteredBreweries.map(item => (
-                            <li key={item.name} >
-                                <Link className="text-light" to={`/brewery-details/${item.id}`} >{item.name}</Link>
-                            </li>
-                        ))}
+                <div className="rafaBeau">
+                        <h1 className="text-light same-side">Search For Specific Brewery</h1>
+                        <input className="same-side" type="text" onChange={this.filterBreweries} />
+                        <ul className="style same-side">
+                            {this.state.filteredBreweries.map(item => (
+                                <li key={item.name} >
+                                    <Link className="text-light" to={`/brewery-details/${item.id}`} >{item.name}</Link>
+                                </li>
+                            ))}
                         </ul>
-                        </Container>
-                    </div>
-                    
-                        
-               
+                </div>
+
+
+
             );
         }
     }
 }
 
- 
+
 export default AllBeers
