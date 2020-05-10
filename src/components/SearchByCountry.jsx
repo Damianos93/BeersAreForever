@@ -24,7 +24,7 @@ class searchByCountry extends Component {
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        countries: result.data,
+                        countitemsries: result.data,
                         filteredCountries:[]
                     });
                 },
@@ -72,7 +72,6 @@ class searchByCountry extends Component {
                     <h1 className="text-light">Search by Iso code</h1>
                     <input className="w-40" type="text" onChange={this.filterCountries} />
                     <ul className="style">
-                    
                     {this.state.filteredCountries.map((item,index) => (
                             <li key={index}>
                                <Link className="text-light" to={`/beer-search/${item}`}>{item}</Link>
