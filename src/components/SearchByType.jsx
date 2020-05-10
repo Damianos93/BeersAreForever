@@ -1,89 +1,88 @@
-// import React, { Component } from 'react'
-// import { Link } from "react-router-dom"
-// import { Container, Spinner } from 'react-bootstrap';
+import React, { Component } from 'react'
+import "./SearchByCountry.scss"
+import { Link} from "react-router-dom"
+import { Container, Spinner, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
-// class SearchByType extends Component {
-//     constructor(props) {
-//         super(props)
+class SearchByType extends Component {
+    constructor(props) {
+        super(props)
 
-//         this.state = {
-//             error: null,
-//             isLoaded: false,
-//             countries: [],
-//             num: 1
-//         }
-//     }
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: [],
+            filteredStyles: [],
+            num: 1
+        }
+    }
+     
+    fetchData(){
+        fetch(`/styles/?key=b4511df48ed054fa8d0c793195b6fae6&p=1`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        styles: result.data,
+                        filteredStyles:[]
+                    });
+                },
 
-//     fetchData() {
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    componentDidMount() {
+        this.fetchData();
+        
+      }
+         filterStyles = e => {
+         let filterTheStyles = this.state.styles.filter((style) => {
 
-//         fetch(`/beers/?key=b4511df48ed054fa8d0c793195b6fae6&`)
-//             .then(res => res.json())
-//             .then(
-//                 (result) => {
-//                     this.setState({
-//                         isLoaded: true,
-//                         countries: result.data,
-//                     });
-//                 },
+             return (
+                style.category.name.toLowerCase().includes(e.target.value.toLowerCase())
+             )
+         })
 
-//                 (error) => {
-//                     this.setState({
-//                         isLoaded: true,
-//                         error
-//                     });
-//                 }
-//             )
-//     }
-//     componentDidMount() {
-//         this.fetchData();
+         const styles= filterTheStyles.map(q => q.category.name);
+         const stylesFinal = styles.filter((q, idx) =>
+            styles.indexOf(q) === idx)
+         this.setState({
+             filteredStyles: styles.filter((q, idx) =>
+             styles.indexOf(q) === idx)
+         })
+     }
+    
+    render() {
+        
+        const { error, isLoaded } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        } else {
+        return (
+            <div className="backgroundss">
+            <div className="same-side">
+                    <h1 className="text-light">Search by Style</h1>
+                    <input  type="text" onChange={this.filterStyles} />
+                    <ul className="style text-light">                   
+                    {this.state.filteredStyles.map(item => (
+                            <li key={item.id}>
+                               <Link className="text-light" to={`/beer-search-type/${item}`} >{item}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                    </div>
+                </div>
+        )}
+    }
+}
 
-//     }
-//     filterCountries = e => {
-//         let filterTheCountries = this.state.countries.filter((country) => {
-
-//             return (
-//                 country.style.category.name.toLowerCase().includes(e.target.value.toLowerCase())
-//             )
-//         })
-
-//         const countries = filterTheCountries.map(q => q.style.category.name);
-//         const countriesFinal = countries.filter((q, idx) =>
-//             countries.indexOf(q) === idx)
-//         this.setState({
-//             filteredCountries: countries.filter((q, idx) =>
-//                 countries.indexOf(q) === idx)
-//         })
-//     }
-
-//     render() {
-
-//         const { error, isLoaded } = this.state;
-//         if (error) {
-//             return <div>Error: {error.message}</div>;
-//         } else if (!isLoaded) {
-//             return
-//             <Spinner animation="border" role="status">
-//                 <span className="sr-only">Loading...</span>
-//             </Spinner>
-//         } else {
-//             return (
-//                 <div className="backgrounds">
-//                     <div className="same-side">
-//                         <h1 className="text-light">Search by Iso code</h1>
-//                         <input className="w-40" type="text" onChange={this.filterCountries} />
-//                         <ul className="style">
-//                             {this.state.countries.map((item, index) => (
-//                                 <li key={index}>
-//                                     {item}
-//                                 </li>
-//                             ))}
-//                         </ul>
-
-//                     </div>
-//                 </div>
-//             )
-//         }
-//     }
-// }
-
-// export default SearchByType
+export default SearchByType

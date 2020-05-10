@@ -27,6 +27,9 @@ class NavBar extends Component {
                     <Nav.Item>
                         <Nav.Link className="text-light" href="/searchByCountry">Search By Country</Nav.Link>
                     </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link className="text-light" href="/searchByType">Search By Type</Nav.Link>
+                    </Nav.Item>
                 </Nav>
                 
             </div>

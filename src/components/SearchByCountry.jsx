@@ -9,7 +9,7 @@ class searchByCountry extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: [],
+            countries: [],
             filteredCountries: [],
             num: 1
         }
@@ -50,7 +50,6 @@ class searchByCountry extends Component {
         const countries = filterTheCountries.map(q => q.countryIsoCode); 
         const countriesFinal = countries.filter((q, idx) => 
         countries.indexOf(q) === idx)
-        console.log(countriesFinal)
         this.setState({ filteredCountries:countries.filter((q, idx) => 
             countries.indexOf(q) === idx)})
     }

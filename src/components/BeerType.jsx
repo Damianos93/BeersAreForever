@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import { Container, Spinner } from 'react-bootstrap';
-import BeerDetails from "./BeerDetails"
+import "./BeerCountry.scss"
+import "./SearchByType.scss"
 
-class Beer extends Component {
+class BeerType extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             error: null,
             isLoaded: false,
-            items: [] ,
-            
+            items: []  
         }
     }
     componentDidMount() {
-        fetch(`/beer/${this.props.match.params.id}?key=4feaae179035e0e40542edf1b44b7ff8&withBreweries=Y`)
+        fetch(`/beers/?key=b4511df48ed054fa8d0c793195b6fae6&withBreweries=Y`)
             .then(res => res.json())
             .then((result) => {
                     this.setState({
                         isLoaded: true,
-                        items: result.data || []
+                        items: result.data|| []
                     });
                 },
                 (error) => {
@@ -40,19 +40,20 @@ class Beer extends Component {
             </Spinner>
         } else {
             return (
+                <div className="beer-background backgroundss">
                 <div className="same-side">
-                      <BeerDetails 
-                      name={items.name}
-                      location={items.breweries[0].locations[0].country.name}
-                      image={items.labels?items.labels.medium:null}
-                      abv={items.abv} 
-                      desc={items.style.description}
-                      kind={items.style.category.name} />
+                      {this.state.items.map(item => (
+                          
+                           <div className="text-light">                           
+                            {item.style && item.style.category.name==this.props.match.params.id?item.name:null}
+                            </div>
+                        ))}
                 </div>
-                
+                </div>
             );
+            
         }
     }
 }
 
-export default Beer
+export default BeerType
